@@ -101,7 +101,7 @@ export default function AboutPage() {
           <div className="relative">
             <div className="bg-gradient-to-br from-primary-100 to-accent-100 rounded-3xl aspect-[4/3] flex items-center justify-center">
               <div className="text-center p-8">
-                <img src="/logo.png" alt="OHCS Care Logo" className="h-24 w-auto mx-auto mb-4" />
+                <img src={`${import.meta.env.BASE_URL}logo.png`} alt="OHCS Care Logo" className="h-24 w-auto mx-auto mb-4" />
                 <p className="text-primary-700 font-bold text-2xl">OHCS Care</p>
                 <p className="text-primary-600/70 text-sm mt-2">Ōtautahi Home Care Services</p>
               </div>

@@ -18,27 +18,7 @@ import {
   CheckCircle2,
   Award,
 } from 'lucide-react';
-import { lazy, Suspense, Component, type ReactNode } from 'react';
-
-class Hero3DErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean }> {
-  constructor(props: { children: ReactNode }) {
-    super(props);
-    this.state = { hasError: false };
-  }
-  static getDerivedStateFromError() {
-    return { hasError: true };
-  }
-  render() {
-    if (this.state.hasError) {
-      return (
-        <div className="w-full h-[350px] lg:h-[550px] flex items-center justify-center">
-          <div className="w-48 h-48 rounded-full bg-gradient-to-br from-primary-100 to-accent-100" />
-        </div>
-      );
-    }
-    return this.props.children;
-  }
-}
+import { lazy, Suspense } from 'react';
 import Section from '../components/Section';
 import SectionHeader from '../components/SectionHeader';
 import ServiceCard from '../components/ServiceCard';
@@ -211,7 +191,6 @@ export default function HomePage() {
 
             {/* Right: 3D Scene */}
             <div className="order-1 lg:order-2">
-              <Hero3DErrorBoundary>
               <Suspense
                 fallback={
                   <div className="w-full h-[350px] lg:h-[550px] flex items-center justify-center">
@@ -221,7 +200,6 @@ export default function HomePage() {
               >
                 <Hero3D />
               </Suspense>
-              </Hero3DErrorBoundary>
             </div>
           </div>
         </div>
@@ -300,7 +278,7 @@ export default function HomePage() {
           </div>
           <div className="relative">
             <div className="rounded-3xl overflow-hidden shadow-lg">
-              <img src="/logo.png" alt="OHCS Care Logo" className="w-full h-auto" />
+              <img src={`${import.meta.env.BASE_URL}logo.png`} alt="OHCS Care Logo" className="w-full h-auto" />
             </div>
             {/* Floating badge */}
             <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-lg px-5 py-3 border border-gray-100">
