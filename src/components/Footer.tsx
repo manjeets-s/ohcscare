@@ -26,7 +26,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center gap-3 mb-5">
-              <img src="/logo.png" alt="OHCS Care Logo" className="h-10 w-auto brightness-0 invert" />
+              <img src={`${import.meta.env.BASE_URL}logo.png`} alt="OHCS Care Logo" className="h-10 w-auto brightness-0 invert" />
               <div className="flex flex-col">
                 <span className="text-lg font-bold text-white leading-tight">OHCS Care</span>
                 <span className="text-[10px] text-gray-400 leading-tight tracking-wide uppercase">Ōtautahi Home Care</span>

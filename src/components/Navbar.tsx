@@ -19,7 +19,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-18">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
-            <img src="/logo.png" alt="OHCS Care Logo" className="h-10 w-auto" />
+            <img src={`${import.meta.env.BASE_URL}logo.png`} alt="OHCS Care Logo" className="h-10 w-auto" />
             <div className="flex flex-col">
               <span className="text-lg font-bold text-gray-900 leading-tight">OHCS Care</span>
               <span className="text-[10px] text-gray-500 leading-tight tracking-wide uppercase">Ōtautahi Home Care</span>
