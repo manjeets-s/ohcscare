@@ -18,7 +18,27 @@ import {
   CheckCircle2,
   Award,
 } from 'lucide-react';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, Component, type ReactNode } from 'react';
+
+class Hero3DErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean }> {
+  constructor(props: { children: ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="w-full h-[350px] lg:h-[550px] flex items-center justify-center">
+          <div className="w-48 h-48 rounded-full bg-gradient-to-br from-primary-100 to-accent-100" />
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 import Section from '../components/Section';
 import SectionHeader from '../components/SectionHeader';
 import ServiceCard from '../components/ServiceCard';
@@ -191,6 +211,7 @@ export default function HomePage() {
 
             {/* Right: 3D Scene */}
             <div className="order-1 lg:order-2">
+              <Hero3DErrorBoundary>
               <Suspense
                 fallback={
                   <div className="w-full h-[350px] lg:h-[550px] flex items-center justify-center">
@@ -200,6 +221,7 @@ export default function HomePage() {
               >
                 <Hero3D />
               </Suspense>
+              </Hero3DErrorBoundary>
             </div>
           </div>
         </div>
