@@ -9,7 +9,7 @@ import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/ohcscare">
       <ScrollToTop />
       <div className="min-h-screen flex flex-col bg-white">
         <Navbar />
