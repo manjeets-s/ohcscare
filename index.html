@@ -2,12 +2,56 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="./favicon-192.png" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>OHCS Care | Ōtautahi Home Care Services</title>
+    <title>OHCS Care — Compassionate Home Care & Disability Support in Christchurch</title>
+    <meta name="description" content="Ōtautahi Home Care Services provides compassionate, professional home care and disability support in Christchurch, NZ. Personal care, companionship, dementia support and 24/7 assistance — care that feels like family." />
+    <meta name="theme-color" content="#0F4C81" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="OHCS Care — Compassionate Care That Feels Like Family" />
+    <meta property="og:description" content="Professional home care and disability support in Christchurch. Qualified carers, flexible care plans, 24/7 assistance." />
+    <meta property="og:locale" content="en_NZ" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script>
+      // Apply saved / system theme before first paint to avoid a flash.
+      (function () {
+        try {
+          var saved = localStorage.getItem('ohcs-theme');
+          var dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.classList.add('dark');
+        } catch (e) {}
+      })();
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": ["LocalBusiness", "MedicalBusiness"],
+      "@id": "https://manjeets-s.github.io/ohcscare/",
+      "name": "Ōtautahi Home Care Services",
+      "alternateName": "OHCS Care",
+      "description": "Compassionate home care and disability support services in Christchurch, New Zealand.",
+      "telephone": "+64220622505",
+      "email": "info@ohcscare.co.nz",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Christchurch",
+        "addressCountry": "NZ"
+      },
+      "areaServed": "Christchurch, New Zealand",
+      "openingHours": "Mo-Su 00:00-24:00",
+      "knowsAbout": ["Home care", "Disability support", "Dementia support", "Elderly care", "Personal care", "Overnight care"]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from 'react';
+import { CheckCircle2, Send } from 'lucide-react';
 import Button from './Button';
 
 const serviceOptions = [
@@ -13,6 +14,14 @@ const serviceOptions = [
   'Other',
 ];
 
+const fieldClasses =
+  'w-full px-5 py-3.5 rounded-2xl text-sm transition-all duration-200 ' +
+  'bg-slate-50 dark:bg-white/5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 ' +
+  'border border-slate-200 dark:border-white/10 ' +
+  'focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-transparent';
+
+const labelClasses = 'block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2';
+
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
 
@@ -23,96 +32,75 @@ export default function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="bg-accent-50 border border-accent-200 rounded-2xl p-8 text-center">
-        <div className="w-16 h-16 bg-accent-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <svg className="w-8 h-8 text-accent-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-          </svg>
+      <div className="rounded-3xl bg-teal-50 dark:bg-teal-900/25 border border-teal-200 dark:border-teal-800/60 p-10 text-center" role="status">
+        <div className="w-16 h-16 rounded-full bg-teal-500 text-white flex items-center justify-center mx-auto mb-5 shadow-glow">
+          <CheckCircle2 className="w-8 h-8" />
         </div>
-        <h3 className="text-xl font-semibold text-gray-900 mb-2">Thank you!</h3>
-        <p className="text-gray-600">We've received your message and will get back to you within 24 hours.</p>
+        <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 tracking-tight">Thank you — we've got it.</h3>
+        <p className="text-slate-600 dark:text-slate-400">
+          We've received your message and will be in touch within 24 hours.
+        </p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+    <form onSubmit={handleSubmit} className="space-y-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1.5">
-            Your Name *
+          <label htmlFor="name" className={labelClasses}>
+            Your name <span aria-hidden="true">*</span>
           </label>
-          <input
-            id="name"
-            name="name"
-            type="text"
-            required
-            placeholder="John Smith"
-            className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all text-sm"
-          />
+          <input id="name" name="name" type="text" required autoComplete="name" placeholder="Jane Smith" className={fieldClasses} />
         </div>
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1.5">
-            Your Email *
+          <label htmlFor="email" className={labelClasses}>
+            Email <span aria-hidden="true">*</span>
           </label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            required
-            placeholder="john@example.com"
-            className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all text-sm"
-          />
+          <input id="email" name="email" type="email" required autoComplete="email" placeholder="jane@example.com" className={fieldClasses} />
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div>
-          <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1.5">
-            Your Phone
+          <label htmlFor="phone" className={labelClasses}>
+            Phone
           </label>
-          <input
-            id="phone"
-            name="phone"
-            type="tel"
-            placeholder="022 000 0000"
-            className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all text-sm"
-          />
+          <input id="phone" name="phone" type="tel" autoComplete="tel" placeholder="022 000 0000" className={fieldClasses} />
         </div>
         <div>
-          <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-1.5">
-            Select a Service
+          <label htmlFor="service" className={labelClasses}>
+            Service of interest
           </label>
-          <select
-            id="service"
-            name="service"
-            className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all text-sm"
-          >
-            <option value="">Choose a service...</option>
+          <select id="service" name="service" className={fieldClasses}>
+            <option value="">Choose a service…</option>
             {serviceOptions.map((service) => (
-              <option key={service} value={service}>{service}</option>
+              <option key={service} value={service}>
+                {service}
+              </option>
             ))}
           </select>
         </div>
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1.5">
+        <label htmlFor="message" className={labelClasses}>
           Tell us about your needs
         </label>
         <textarea
           id="message"
           name="message"
           rows={4}
-          placeholder="Describe the care or support you're looking for..."
-          className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all text-sm resize-none"
+          placeholder="Describe the care or support you're looking for…"
+          className={`${fieldClasses} resize-none`}
         />
       </div>
 
-      <Button type="submit" variant="primary" size="lg" className="w-full">
+      <Button type="submit" size="lg" className="w-full">
         Send Message
+        <Send className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
       </Button>
-      <p className="text-xs text-gray-500 text-center">
+      <p className="text-xs text-slate-500 dark:text-slate-400 text-center">
         We typically respond within 24 hours. Your information is kept confidential.
       </p>
     </form>

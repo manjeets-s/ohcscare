@@ -8,18 +8,16 @@ interface SectionProps {
 }
 
 const bgClasses: Record<string, string> = {
-  white: 'bg-white',
-  light: 'bg-gray-50',
-  primary: 'bg-primary-600',
-  dark: 'bg-gray-900',
+  white: 'bg-white dark:bg-[#08101d]',
+  light: 'bg-surface dark:bg-[#060d17]',
+  primary: 'bg-gradient-to-br from-primary-800 via-primary-700 to-primary-900',
+  dark: 'bg-primary-950',
 };
 
-export default function Section({ children, className = '', id, bg = 'white' }: SectionProps) {
+export default function Section({ children, className = '', id, bg = 'light' }: SectionProps) {
   return (
-    <section id={id} className={`py-20 lg:py-28 ${bgClasses[bg]} ${className}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {children}
-      </div>
+    <section id={id} className={`relative py-24 lg:py-32 ${bgClasses[bg]} ${className}`}>
+      <div className="relative max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">{children}</div>
     </section>
   );
 }
